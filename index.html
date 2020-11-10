@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="pin-display" class="form-control" type="text">
+                    <button id="gen-btn"class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input class="form-control" value=" id="display" placeholder="Enter Your pin number" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div class="button btn" value="7" onclick=" displayNum(7)">7</div>
+                              <div class="button btn"value="8" onclick=" displayNum(8)">8</div>
+                              <div class="button btn"value="9" onclick=" displayNum(9)">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button btn"value="4" onclick=" displayNum(4)">4</div>
+                              <div class="button btn"value="5" onclick=" displayNum(5)">5</div>
+                              <div class="button btn"value="6" onclick=" displayNum(6)">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button btn"value="1" onclick=" displayNum(1)">1</div>
+                              <div class="button btn"value="2" onclick=" displayNum(2)">2</div>
+                              <div class="button btn"value="3" onclick=" displayNum(3)">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button" onclick= "document.getElementById('display').value = document.getElementById('display').value.slice(0, -1)"><</div>
+                                <div class="button btn"value= "0" onclick=" displayNum(0)">0</div>
+                                <div class="button"  onclick= "document.getElementById('display').value = null">C</div>
+                            </div>
+                            <div>
+                                <button type="submit" id="submit-btn" class="submit-btn">Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p id="not-match" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p  id="code-match" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+    <script>
+        //creating random pin number
+        document.getElementById('gen-btn').addEventListener('click', function () {
+            let pinNum = Math.floor(1000 + Math.random() * 9000);
+            let generatePin = document.getElementById('pin-display');
+            generatePin.value = pinNum;
+        })
+        
+        // button value on right side display
+        function displayNum(val){
+            document.getElementById('display').value = document.getElementById('display').value + val;
+        }
+        
+
+        
+        //submit button work
+        
+        document.getElementById('submit-btn').addEventListener('click', function(){
+            if ( document.getElementById('pin-display').value === document.getElementById('display').value){
+
+                document.getElementById('code-match').style.display = 'block';
+                document.getElementById('not-match').style.display ='none';
+            }
+            else{
+                
+                document.getElementById('code-match').style.display = 'none';
+                document.getElementById('not-match').style.display ='block';
+            }
+        })
+
+
+
+      
+    </script>
+</body>
+</html>
